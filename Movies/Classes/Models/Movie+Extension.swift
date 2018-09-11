@@ -1,0 +1,37 @@
+//
+//  Movie+Extension.swift
+//  Movies
+//
+//  Created by Sebastian Romero on 11/09/18.
+//  Copyright © 2018 Maachi. All rights reserved.
+//
+
+import UIKit
+
+extension Movie {
+    
+    
+    class func add(movieItem:MovieItem) {
+        var movie:Movie! = Movie.get(attribute: "id", value: "=\(movieItem.id)")
+        if movie == nil {
+            movie = Movie.create()
+        }
+        movie.id = movieItem.id
+        movie.voteCount = movieItem.vote_count
+        movie.video = movieItem.video
+        movie.voteAverage = movieItem.vote_average
+        movie.title = movieItem.title
+        movie.popularity = movieItem.popularity
+        movie.posterPath = movieItem.poster_path
+        movie.originalLanguage = movieItem.original_language
+        movie.originalTitle = movieItem.original_title
+        movie.backdropPath = movieItem.backdrop_path
+        movie.adult = movieItem.adult
+        movie.overview = movieItem.overview
+        if let date = movieItem.release_date.date {
+            movie.releaseDate = date
+        }
+        _ = movie.save()
+    }
+    
+}

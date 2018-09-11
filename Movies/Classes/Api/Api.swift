@@ -35,3 +35,33 @@ struct Service {
     /// Headers
     var headers: HTTPHeaders? = nil
 }
+
+
+class ApiService {
+    
+    
+    /// Common request method
+    ///
+    /// - parameter service:  service param
+    /// - parameter params:   params from the request
+    /// - parameter complete: complete handler
+    internal func request(service:Service, params:[String: Any]?, complete: @escaping (_ error:ApiError?, _ response:Any?, _ data:Data?) -> Void) {
+        var encoding:ParameterEncoding = JSONEncoding.default
+        if service.method == .get {
+            encoding = URLEncoding.default
+        }
+        Alamofire.request(service.url, method: service.method, parameters: params, encoding:encoding, headers:service.headers).responseJSON { response in
+            switch response.result {
+            case .success:
+                if let result = response.result.value {
+                    complete(nil, result, response.data)
+                } else {
+                    complete(.noValidResponse, nil, response.data)
+                }
+            case .failure:
+                complete(.serverError, nil, response.data)
+            }
+        }
+    }
+    
+}

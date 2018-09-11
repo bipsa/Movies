@@ -8,15 +8,15 @@
 
 import UIKit
 
-struct Movies:Decodable {
+struct MoviesServiceList:Decodable {
     let page:Int
     let total_results:Int32
     let total_pages:Int32
-    let results:[Movie]
+    let results:[MovieItem]
 }
 
 
-struct Movie:Decodable {
+struct MovieItem:Decodable {
     let vote_count:Int32
     let id:Int32
     let video:Bool
