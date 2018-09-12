@@ -36,6 +36,8 @@ class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UI
         self.backgroundColor = .white
         self.register(ContentCell.self, forCellWithReuseIdentifier: "contentCell")
         self.isPagingEnabled = true
+        self.showsHorizontalScrollIndicator = false
+        self.showsVerticalScrollIndicator = false
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
