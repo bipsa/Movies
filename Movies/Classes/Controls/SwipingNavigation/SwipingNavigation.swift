@@ -56,7 +56,6 @@ extension SwipingNavigation {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "contentCell", for: indexPath)
-        cell.backgroundColor = indexPath.item % 2 == 0 ? .red : .green
         return cell
     }
     
