@@ -19,7 +19,7 @@ class ContentNavigationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = UIColor.black
         self.view.addSubview(self.swipingNavigation)
         TheMovieDB.api.getPopularMovies { (error, response) in
             if let response = response {

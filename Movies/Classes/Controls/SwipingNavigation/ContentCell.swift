@@ -29,6 +29,13 @@ class ContentCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSou
             currentMovie = newValue
             content = [ContentCellModel(isHero: true), ContentCellModel(isHero: false)]
             self.tableView.reloadData()
+            TheMovieDB.api.getMovieDetail(movieId: currentMovie.id) { (error, movieDetail) in
+                print(self.currentMovie.originalTitle ?? "", self.currentMovie.id)
+                if let detail = movieDetail {
+                    self.currentMovie.addDetail(detail: detail)
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
 
@@ -115,6 +122,7 @@ extension ContentCell {
         if current.isHero {
             let heroCell = tableView.dequeueReusableCell(withIdentifier: "MovieHero", for: indexPath as IndexPath) as! MovieHero
             heroCell.movieTitle.text = movie.originalTitle ?? ""
+            heroCell.movieDetail.text = "\(movie.qualification()) | \(movie.runtime) | \(movie.site ?? "No site") "
             cell = heroCell
         } else {
             let descriptionCell = tableView.dequeueReusableCell(withIdentifier: "MovieDescription", for: indexPath as IndexPath) as! MovieDescription

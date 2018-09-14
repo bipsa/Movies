@@ -48,7 +48,7 @@ final class TheMovieDB:ApiService {
     
     
     
-    func getMovieDetail(movieId:Int32, complete: @escaping (_ error:ApiError?, _ movies:MoviesServiceList?) -> Void) {
+    func getMovieDetail(movieId:Int32, complete: @escaping (_ error:ApiError?, _ detail:MovieDetail?) -> Void) {
         let params:[String:Any] = [
             "api_key": THEMOVIEDB_APIKEY,
             "language": "en-US".localized
@@ -56,8 +56,8 @@ final class TheMovieDB:ApiService {
         self.request(service:Service(url:"\(THEMOVIEDB_APIURL_BASE)movie/\(movieId)", method:.get, headers:nil), params: params) { (error, response, data) in
             if let data:Data = data {
                 do {
-                    let movies = try JSONDecoder().decode(MoviesServiceList.self, from: data)
-                    complete(nil, movies)
+                    let detail = try JSONDecoder().decode(MovieDetail.self, from: data)
+                    complete(nil, detail)
                 } catch let parsingError {
                     print(parsingError)
                     complete(.noValidResponse, nil)
@@ -67,6 +67,31 @@ final class TheMovieDB:ApiService {
             }
         }
     }
+    
+    
+    
+    func getMovieCredits(movieId:Int32, complete: @escaping (_ error:ApiError?, _ credits:MovieCredits?) -> Void) {
+        let params:[String:Any] = [
+            "api_key": THEMOVIEDB_APIKEY,
+            "language": "en-US".localized
+        ]
+        self.request(service:Service(url:"\(THEMOVIEDB_APIURL_BASE)movie/\(movieId)/credits", method:.get, headers:nil), params: params) { (error, response, data) in
+            if let data:Data = data {
+                do {
+                    let credits = try JSONDecoder().decode(MovieCredits.self, from: data)
+                    complete(nil, credits)
+                } catch let parsingError {
+                    print(parsingError)
+                    complete(.noValidResponse, nil)
+                }
+            } else {
+                complete(.noValidResponse, nil)
+            }
+        }
+    }
+
+    
+    
     
     
     

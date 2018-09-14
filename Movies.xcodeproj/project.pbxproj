@@ -28,6 +28,8 @@
 		63700348214B5BFC0040ADD0 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6370033C214B5BFC0040ADD0 /* Roboto-Medium.ttf */; };
 		6370034A214B5FDD0040ADD0 /* MovieDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63700349214B5FDD0040ADD0 /* MovieDescription.swift */; };
 		6370034C214B60110040ADD0 /* MovieDescription.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6370034B214B60110040ADD0 /* MovieDescription.xib */; };
+		6370034E214C2DA00040ADD0 /* Company+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370034D214C2DA00040ADD0 /* Company+Extension.swift */; };
+		63700350214C2F0D0040ADD0 /* Genre+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6370034F214C2F0D0040ADD0 /* Genre+Extension.swift */; };
 		63788E4A214818A100CB405C /* ContentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63788E49214818A100CB405C /* ContentNavigationController.swift */; };
 		63788E4E21481A9B00CB405C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63788E4D21481A9B00CB405C /* CoreDataManager.swift */; };
 		63788E5021481AB100CB405C /* NSManagedObject+Horn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63788E4F21481AB100CB405C /* NSManagedObject+Horn.swift */; };
@@ -82,6 +84,8 @@
 		6370033C214B5BFC0040ADD0 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		63700349214B5FDD0040ADD0 /* MovieDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDescription.swift; sourceTree = "<group>"; };
 		6370034B214B60110040ADD0 /* MovieDescription.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDescription.xib; sourceTree = "<group>"; };
+		6370034D214C2DA00040ADD0 /* Company+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+Extension.swift"; sourceTree = "<group>"; };
+		6370034F214C2F0D0040ADD0 /* Genre+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Genre+Extension.swift"; sourceTree = "<group>"; };
 		63788E49214818A100CB405C /* ContentNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentNavigationController.swift; sourceTree = "<group>"; };
 		63788E4D21481A9B00CB405C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		63788E4F21481AB100CB405C /* NSManagedObject+Horn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Horn.swift"; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				63788E70214856AF00CB405C /* Movie+Extension.swift */,
+				6370034D214C2DA00040ADD0 /* Company+Extension.swift */,
+				6370034F214C2F0D0040ADD0 /* Genre+Extension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -427,6 +433,8 @@
 				63788E6E2148551100CB405C /* Movies.xcdatamodeld in Sources */,
 				635C4916214A1FE000644935 /* MovieHero.swift in Sources */,
 				63788E75214862CA00CB405C /* SwipingNavigation.swift in Sources */,
+				63700350214C2F0D0040ADD0 /* Genre+Extension.swift in Sources */,
+				6370034E214C2DA00040ADD0 /* Company+Extension.swift in Sources */,
 				63788E71214856AF00CB405C /* Movie+Extension.swift in Sources */,
 				63788E592148249800CB405C /* String+Utils.swift in Sources */,
 				635C4910214A0B0C00644935 /* UIImage+Utils.swift in Sources */,

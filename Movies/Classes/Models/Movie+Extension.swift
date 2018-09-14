@@ -34,4 +34,29 @@ extension Movie {
         _ = movie.save()
     }
     
+    
+    func addDetail(detail:MovieDetail) {
+        self.site = detail.homepage
+        self.budget = detail.budget
+        self.runtime = detail.runtime
+        for companyResponse in detail.production_companies {
+            let company = Company.add(companyItem: companyResponse)
+            self.addToCompanies(company)
+        }
+        for genreResponse in detail.genres {
+            let genre = Genre.add(genreItem: genreResponse)
+            self.addToGenres(genre)
+        }
+        _ = self.save()
+    }
+    
+    
+    func qualification() -> String {
+        if self.adult {
+            return "R"
+        } else {
+            return "PG"
+        }
+    }
+    
 }

@@ -34,9 +34,9 @@ class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UI
     
     
     func setUpNavigation(){
+        self.backgroundColor = .black
         self.delegate = self
         self.dataSource = self
-        self.backgroundColor = .white
         self.register(ContentCell.self, forCellWithReuseIdentifier: "contentCell")
         self.isPagingEnabled = true
         self.showsHorizontalScrollIndicator = false
