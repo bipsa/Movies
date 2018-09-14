@@ -6,7 +6,7 @@
 //  Copyright © 2018 Maachi. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 
 extension String {
@@ -29,5 +29,18 @@ extension String {
         }
         return nil
     }
+    
+    
+    func height(font:UIFont, width:CGFloat) -> CGFloat {
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = self
+        label.sizeToFit()
+        return label.frame.height
+    }
+    
+    
 
 }

@@ -10,11 +10,14 @@ import UIKit
 
 class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
+    var movies:[Movie] = []
+    
     init() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         super.init(frame: .zero, collectionViewLayout: layout)
         self.setUpNavigation()
+        self.getMovies()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,6 +45,12 @@ class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UI
     }
     
     
+    func getMovies(){
+        self.movies = Movie.all() as! [Movie]
+        self.reloadData()
+    }
+    
+    
 }
 
 
@@ -51,11 +60,13 @@ extension SwipingNavigation {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return self.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "contentCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "contentCell", for: indexPath) as! ContentCell
+        cell.movie = self.movies[indexPath.row]
+        cell.initViewContent()
         return cell
     }
     

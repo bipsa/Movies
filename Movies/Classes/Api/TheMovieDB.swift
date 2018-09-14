@@ -48,4 +48,26 @@ final class TheMovieDB:ApiService {
     
     
     
+    func getMovieDetail(movieId:Int32, complete: @escaping (_ error:ApiError?, _ movies:MoviesServiceList?) -> Void) {
+        let params:[String:Any] = [
+            "api_key": THEMOVIEDB_APIKEY,
+            "language": "en-US".localized
+        ]
+        self.request(service:Service(url:"\(THEMOVIEDB_APIURL_BASE)movie/\(movieId)", method:.get, headers:nil), params: params) { (error, response, data) in
+            if let data:Data = data {
+                do {
+                    let movies = try JSONDecoder().decode(MoviesServiceList.self, from: data)
+                    complete(nil, movies)
+                } catch let parsingError {
+                    print(parsingError)
+                    complete(.noValidResponse, nil)
+                }
+            } else {
+                complete(.noValidResponse, nil)
+            }
+        }
+    }
+    
+    
+    
 }

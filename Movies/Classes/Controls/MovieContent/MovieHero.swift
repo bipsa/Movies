@@ -11,6 +11,9 @@ import UIKit
 
 class MovieHero:UITableViewCell {
     
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var movieDetail: UILabel!
+    
     override func willMove(toSuperview newSuperview: UIView?) {
         self.backgroundColor = UIColor.clear
     }
