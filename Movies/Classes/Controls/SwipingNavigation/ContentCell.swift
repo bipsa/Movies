@@ -155,9 +155,9 @@ extension ContentCell {
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print(scrollView.contentOffset.y)
         if (scrollView.contentOffset.y < 0){
             imageTopConstraint.constant = scrollView.contentOffset.y
+            SearchField.current.show()
         } else {
             imageTopConstraint.constant = 0
             footerView.alpha = scrollView.contentOffset.y/50

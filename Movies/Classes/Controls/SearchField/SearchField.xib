@@ -20,18 +20,23 @@
                     <rect key="frame" x="2" y="2" width="347" height="47"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search movies" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rid-LX-2wW">
-                            <rect key="frame" x="10" y="5" width="327" height="37"/>
+                            <rect key="frame" x="20" y="5" width="307" height="37"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                    <color key="value" white="0.84732142857142856" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.35686274509803922" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.10864955357142857" alpha="0.603240536971831" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="rid-LX-2wW" firstAttribute="top" secondItem="RAv-Sw-rYn" secondAttribute="top" constant="5" id="5M4-jD-uyk"/>
                         <constraint firstAttribute="bottom" secondItem="rid-LX-2wW" secondAttribute="bottom" constant="5" id="CEn-tx-EB8"/>
-                        <constraint firstAttribute="trailing" secondItem="rid-LX-2wW" secondAttribute="trailing" constant="10" id="Upo-bY-Fkb"/>
-                        <constraint firstItem="rid-LX-2wW" firstAttribute="leading" secondItem="RAv-Sw-rYn" secondAttribute="leading" constant="10" id="rTd-UT-Nj0"/>
+                        <constraint firstAttribute="trailing" secondItem="rid-LX-2wW" secondAttribute="trailing" constant="20" id="Upo-bY-Fkb"/>
+                        <constraint firstItem="rid-LX-2wW" firstAttribute="leading" secondItem="RAv-Sw-rYn" secondAttribute="leading" constant="20" id="rTd-UT-Nj0"/>
                     </constraints>
                 </view>
             </subviews>

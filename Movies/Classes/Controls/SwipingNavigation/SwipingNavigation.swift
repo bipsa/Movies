@@ -73,4 +73,8 @@ extension SwipingNavigation {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.frame.width, height: self.frame.height)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        SearchField.current.deselect()
+    }
 }

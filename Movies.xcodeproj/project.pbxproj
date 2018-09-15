@@ -45,6 +45,7 @@
 		63788E772148671F00CB405C /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63788E762148671F00CB405C /* ContentCell.swift */; };
 		74C28758214CC83C0017BEB3 /* SearchField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C28757214CC83C0017BEB3 /* SearchField.xib */; };
 		74C2875A214CC85D0017BEB3 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C28759214CC85D0017BEB3 /* SearchField.swift */; };
+		74C2875C214CD0F10017BEB3 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C2875B214CD0F10017BEB3 /* UIView+Utils.swift */; };
 		AAE5CA9F1F121A6ADF80211C /* libPods-Movies.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2537682984F8444564932FE7 /* libPods-Movies.a */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		63788E762148671F00CB405C /* ContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		74C28757214CC83C0017BEB3 /* SearchField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchField.xib; sourceTree = "<group>"; };
 		74C28759214CC85D0017BEB3 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		74C2875B214CD0F10017BEB3 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
 		8EB85B7E394CED929E0B7CAD /* Pods-Movies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies.release.xcconfig"; path = "Pods/Target Support Files/Pods-Movies/Pods-Movies.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,6 +241,7 @@
 			children = (
 				63788E582148249800CB405C /* String+Utils.swift */,
 				635C490F214A0B0C00644935 /* UIImage+Utils.swift */,
+				74C2875B214CD0F10017BEB3 /* UIView+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 			files = (
 				63788E5021481AB100CB405C /* NSManagedObject+Horn.swift in Sources */,
 				63788E4E21481A9B00CB405C /* CoreDataManager.swift in Sources */,
+				74C2875C214CD0F10017BEB3 /* UIView+Utils.swift in Sources */,
 				74C2875A214CC85D0017BEB3 /* SearchField.swift in Sources */,
 				63788E4A214818A100CB405C /* ContentNavigationController.swift in Sources */,
 				63788E5421481D9700CB405C /* TheMovieDB.swift in Sources */,
