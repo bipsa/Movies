@@ -12,6 +12,7 @@ import AlamofireImage
 
 struct ContentCellModel {
     let isHero:Bool
+    var companies:[Company]? = nil
 }
 
 
@@ -20,6 +21,7 @@ class ContentCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSou
     var content:[ContentCellModel] = []
     var imageTopConstraint:NSLayoutConstraint!
     var currentMovie:Movie!
+    var lastScrollPosition:CGFloat = 0
     
     var movie:Movie {
         get {
@@ -27,14 +29,22 @@ class ContentCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSou
         }
         set {
             currentMovie = newValue
-            content = [ContentCellModel(isHero: true), ContentCellModel(isHero: false)]
+            content = [ContentCellModel(isHero: true, companies:nil), ContentCellModel(isHero: false, companies:nil)]
+            if let companies = self.currentMovie.companies {
+                self.content.append(ContentCellModel(isHero: false, companies:companies.array as? [Company]))
+            }
             self.tableView.reloadData()
             TheMovieDB.api.getMovieDetail(movieId: currentMovie.id) { (error, movieDetail) in
-                print(self.currentMovie.originalTitle ?? "", self.currentMovie.id)
                 if let detail = movieDetail {
                     self.currentMovie.addDetail(detail: detail)
+                    if self.content.count == 2 {
+                        if let companies = self.currentMovie.companies {
+                            self.content.append(ContentCellModel(isHero: false, companies:companies.array as? [Company]))
+                        }
+                    }
                     self.tableView.reloadData()
                 }
+                
             }
         }
     }
@@ -68,6 +78,7 @@ class ContentCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSou
         //tableView.register(MovieHero.self, forCellReuseIdentifier: "MovieHero")
         tableView.register(UINib(nibName: "MovieHero", bundle: nil), forCellReuseIdentifier: "MovieHero")
         tableView.register(UINib(nibName: "MovieDescription", bundle: nil), forCellReuseIdentifier: "MovieDescription")
+        tableView.register(UINib(nibName: "MovieCompanies", bundle: nil), forCellReuseIdentifier: "MovieCompanies")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsSelection = false
@@ -119,14 +130,18 @@ extension ContentCell {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:UITableViewCell
         let current = content[indexPath.row]
-        if current.isHero {
+        if let companies = current.companies {
+            let companiesCell = tableView.dequeueReusableCell(withIdentifier: "MovieCompanies", for: indexPath as IndexPath) as! MovieCompanies
+            companiesCell.companies = companies
+            companiesCell.backgroundColor = .clear
+            cell = companiesCell
+        } else if current.isHero {
             let heroCell = tableView.dequeueReusableCell(withIdentifier: "MovieHero", for: indexPath as IndexPath) as! MovieHero
             heroCell.movieTitle.text = movie.originalTitle ?? ""
             heroCell.movieDetail.text = "\(movie.qualification()) | \(movie.runtime) | \(movie.site ?? "No site") "
             cell = heroCell
         } else {
             let descriptionCell = tableView.dequeueReusableCell(withIdentifier: "MovieDescription", for: indexPath as IndexPath) as! MovieDescription
-            
             descriptionCell.movieDescription = self.movie.overview ?? ""
             cell = descriptionCell
         }
@@ -136,15 +151,21 @@ extension ContentCell {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let current = content[indexPath.row]
-        if current.isHero {
+        if let companies = current.companies {
+            let height = CGFloat(ceil(Double(companies.count)/Double(3)) * 100)
+            return height
+        } else if current.isHero {
             return UIScreen.main.bounds.height - 75
         } else {
             if let overview = self.movie.overview {
-                return overview.height(font: UIFont(name: "Roboto-Regular", size: 16)!, width: UIScreen.main.bounds.width - 40) + 40
+                var height = overview.height(font: UIFont(name: "Roboto-Regular", size: 17)!, width: UIScreen.main.bounds.width - 40)
+                if height < 100 {
+                    height = 200
+                }
+                return height
             } else {
                 return 200
             }
-            
         }
     }
     
@@ -153,16 +174,26 @@ extension ContentCell {
         
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.lastScrollPosition = scrollView.contentOffset.y
+    }
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y < 0){
             imageTopConstraint.constant = scrollView.contentOffset.y
-            SearchField.current.show()
         } else {
             imageTopConstraint.constant = 0
             footerView.alpha = scrollView.contentOffset.y/50
             footerView.frame.origin.y = UIScreen.main.bounds.height - scrollView.contentOffset.y
             footerView.frame.size.height = scrollView.contentOffset.y + 75
+        }
+        if lastScrollPosition - scrollView.contentOffset.y > 40 {
+            SearchField.current.show()
+        } else if lastScrollPosition - scrollView.contentOffset.y < 0  {
+            SearchField.current.hide()
+        } else {
+            SearchField.current.deselect()
         }
     }
     

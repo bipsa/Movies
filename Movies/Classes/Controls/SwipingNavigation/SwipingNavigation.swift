@@ -55,6 +55,7 @@ class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UI
 
 
 extension SwipingNavigation {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
@@ -75,6 +76,6 @@ extension SwipingNavigation {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        SearchField.current.deselect()
+        SearchField.current.hide()
     }
 }
