@@ -25,5 +25,5 @@ This extension centralize all core data interactions.
 El principio de responsabilidad única establece que cada clase y o función tiene un único propósito identificable. Como práctica en trabajo en grupo es un buen método para mantener un código limpio y ordenado pero este depende del tipo de arquitectura de Software que se realice y así evitar sobre-ingeniería ó modelos de comunicación complejos.
 
 
-### Qué características tiene, según su opinión, un “buen” código o código limpio
+#### Qué características tiene, según su opinión, un “buen” código o código limpio
 Evitar repetir código y sobre dimensionar funcionalidad complejiza el proceso de mantenibilidad, este es un tema donde se pueden encontrar una gran variedad de respuestas, para mi un buen código es aquel que pueda entender y mantener, independientemente del estilo ó lenguaje de programación. Si bien hay buenas prácticas que se pueden seguir, todos los proyectos y programadores tienen una forma de hacer las cosas. 
