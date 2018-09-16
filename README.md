@@ -1,3 +1,3 @@
 # Movies app
 
-![](preview.gif =320x)
+<img src="preview.gif" width="300">
