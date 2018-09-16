@@ -11,7 +11,7 @@ import UIKit
 extension Movie {
     
     
-    class func add(movieItem:MovieItem) {
+    class func add(movieItem:MovieItem) -> Movie {
         var movie:Movie! = Movie.get(attribute: "id", value: "=\(movieItem.id)")
         if movie == nil {
             movie = Movie.create()
@@ -32,6 +32,7 @@ extension Movie {
             movie.releaseDate = date
         }
         _ = movie.save()
+        return movie
     }
     
     

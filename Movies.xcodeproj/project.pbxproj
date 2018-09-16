@@ -47,6 +47,8 @@
 		63F39AE0214DBCDA00B5C2F5 /* MovieCompanies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F39ADF214DBCDA00B5C2F5 /* MovieCompanies.swift */; };
 		63F39AE2214DC9BD00B5C2F5 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F39AE1214DC9BD00B5C2F5 /* CompanyCell.swift */; };
 		63F39AE4214DC9DD00B5C2F5 /* CompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F39AE3214DC9DD00B5C2F5 /* CompanyCell.xib */; };
+		63F39AE7214DF47900B5C2F5 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 63F39AE6214DF47900B5C2F5 /* Menu.xib */; };
+		63F39AE9214DF48800B5C2F5 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F39AE8214DF48800B5C2F5 /* Menu.swift */; };
 		74C28758214CC83C0017BEB3 /* SearchField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74C28757214CC83C0017BEB3 /* SearchField.xib */; };
 		74C2875A214CC85D0017BEB3 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C28759214CC85D0017BEB3 /* SearchField.swift */; };
 		74C2875C214CD0F10017BEB3 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C2875B214CD0F10017BEB3 /* UIView+Utils.swift */; };
@@ -112,6 +114,8 @@
 		63F39ADF214DBCDA00B5C2F5 /* MovieCompanies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCompanies.swift; sourceTree = "<group>"; };
 		63F39AE1214DC9BD00B5C2F5 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		63F39AE3214DC9DD00B5C2F5 /* CompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyCell.xib; sourceTree = "<group>"; };
+		63F39AE6214DF47900B5C2F5 /* Menu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Menu.xib; sourceTree = "<group>"; };
+		63F39AE8214DF48800B5C2F5 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		74C28757214CC83C0017BEB3 /* SearchField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchField.xib; sourceTree = "<group>"; };
 		74C28759214CC85D0017BEB3 /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		74C2875B214CD0F10017BEB3 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 		63788E72214862A900CB405C /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				63F39AE5214DF45900B5C2F5 /* Menu */,
 				74C28756214CC81C0017BEB3 /* SearchField */,
 				635C4912214A18EC00644935 /* MovieContent */,
 				63788E73214862B900CB405C /* SwipingNavigation */,
@@ -285,6 +290,15 @@
 				63788E762148671F00CB405C /* ContentCell.swift */,
 			);
 			path = SwipingNavigation;
+			sourceTree = "<group>";
+		};
+		63F39AE5214DF45900B5C2F5 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				63F39AE6214DF47900B5C2F5 /* Menu.xib */,
+				63F39AE8214DF48800B5C2F5 /* Menu.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		74C28756214CC81C0017BEB3 /* SearchField */ = {
@@ -400,6 +414,7 @@
 				63700344214B5BFC0040ADD0 /* Roboto-ThinItalic.ttf in Resources */,
 				6370033F214B5BFC0040ADD0 /* Roboto-Thin.ttf in Resources */,
 				63700347214B5BFC0040ADD0 /* Roboto-Bold.ttf in Resources */,
+				63F39AE7214DF47900B5C2F5 /* Menu.xib in Resources */,
 				63700343214B5BFC0040ADD0 /* Roboto-LightItalic.ttf in Resources */,
 				6370033E214B5BFC0040ADD0 /* Roboto-Regular.ttf in Resources */,
 				63F39ADE214DBC7300B5C2F5 /* MovieCompanies.xib in Resources */,
@@ -468,6 +483,7 @@
 				635C4916214A1FE000644935 /* MovieHero.swift in Sources */,
 				63788E75214862CA00CB405C /* SwipingNavigation.swift in Sources */,
 				63700350214C2F0D0040ADD0 /* Genre+Extension.swift in Sources */,
+				63F39AE9214DF48800B5C2F5 /* Menu.swift in Sources */,
 				6370034E214C2DA00040ADD0 /* Company+Extension.swift in Sources */,
 				63788E71214856AF00CB405C /* Movie+Extension.swift in Sources */,
 				63788E592148249800CB405C /* String+Utils.swift in Sources */,

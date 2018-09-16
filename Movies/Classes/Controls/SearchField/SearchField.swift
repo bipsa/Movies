@@ -18,6 +18,7 @@ class SearchField:UIView {
     static let current : SearchField = {
         let instance = Bundle.main.loadNibNamed("SearchField", owner: self, options: nil)?[0] as! SearchField
         instance.fieldWrapper.cornerRadius(radius: 20)
+        instance.searchField.addTarget(instance, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return instance
     }()
     
@@ -60,4 +61,18 @@ class SearchField:UIView {
     func deselect(){
         self.searchField.resignFirstResponder()
     }
+    
+    @IBAction func showMoreOptions(_ sender: Any) {
+        Menu.current.show()
+    }
+    
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text {
+            print(text)
+            let movies = Movie.search(attribute: "originalTitle", value: text, limit: 0, offset: 0) as! [Movie]
+            NotificationCenter.default.post(name: Notification.Name("MoviesUpdated"), object: movies)
+        }
+    }
+    
 }

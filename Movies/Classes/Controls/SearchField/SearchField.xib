@@ -17,10 +17,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAv-Sw-rYn">
-                    <rect key="frame" x="2" y="2" width="347" height="47"/>
+                    <rect key="frame" x="2" y="2" width="317" height="47"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search movies" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rid-LX-2wW">
-                            <rect key="frame" x="20" y="5" width="307" height="37"/>
+                            <rect key="frame" x="20" y="5" width="277" height="37"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -40,12 +40,25 @@
                         <constraint firstItem="rid-LX-2wW" firstAttribute="leading" secondItem="RAv-Sw-rYn" secondAttribute="leading" constant="20" id="rTd-UT-Nj0"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ieP-MH-aOB">
+                    <rect key="frame" x="319" y="5" width="30" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="fc8-ot-OiF"/>
+                    </constraints>
+                    <state key="normal" image="more-action-button"/>
+                    <connections>
+                        <action selector="showMoreOptions:" destination="iN0-l3-epB" eventType="touchUpInside" id="7UR-1G-iyW"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="RAv-Sw-rYn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="2" id="D56-ob-PzA"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RAv-Sw-rYn" secondAttribute="trailing" constant="2" id="QO2-EP-jyE"/>
+                <constraint firstItem="ieP-MH-aOB" firstAttribute="leading" secondItem="RAv-Sw-rYn" secondAttribute="trailing" id="IhB-Ng-Brf"/>
+                <constraint firstItem="ieP-MH-aOB" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="1" id="Quo-Se-DPi"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RAv-Sw-rYn" secondAttribute="bottom" constant="2" id="WHJ-6z-J7F"/>
+                <constraint firstItem="ieP-MH-aOB" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="cil-mA-Fq8"/>
                 <constraint firstItem="RAv-Sw-rYn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="2" id="iD7-sx-Las"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ieP-MH-aOB" secondAttribute="trailing" constant="2" id="ywp-c9-MEw"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -57,4 +70,7 @@
             <point key="canvasLocation" x="46.5" y="-254.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="more-action-button" width="20" height="5"/>
+    </resources>
 </document>

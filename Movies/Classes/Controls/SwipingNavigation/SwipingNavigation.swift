@@ -18,6 +18,8 @@ class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UI
         super.init(frame: .zero, collectionViewLayout: layout)
         self.setUpNavigation()
         self.getMovies()
+        NotificationCenter.default.addObserver(self, selector: #selector(moviesUpdated), name: Notification.Name("MoviesUpdated"), object: nil)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,10 +27,28 @@ class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UI
     }
     
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "MoviesUpdated"), object: nil)
+    }
+    
+    
     override func didMoveToSuperview() {
         if let superview = self.superview {
             superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[view]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": self]))
             superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(-10)-[view]-(0)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["view": self]))
+        }
+    }
+    
+    
+    @objc func moviesUpdated(_ notification: Notification){
+        if let movies = notification.object as? [Movie]{
+            if movies.count > 0 && self.movies.count > 0 {
+                self.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: false)
+            }
+            self.movies = movies
+            self.reloadData()
+        } else {
+            self.getMovies()
         }
     }
     
@@ -46,7 +66,7 @@ class SwipingNavigation:UICollectionView, UICollectionViewDelegateFlowLayout, UI
     
     
     func getMovies(){
-        self.movies = Movie.all() as! [Movie]
+        self.movies = Movie.find(attributes: [["isPopular", "= 1"]], order: nil, ascending:false, limit: 0, offset: 0) as! [Movie]
         self.reloadData()
     }
     

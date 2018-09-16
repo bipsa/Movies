@@ -27,7 +27,7 @@ struct MovieItem:Decodable {
     let original_language:String
     let original_title:String
     let genre_ids:[Int32] = []
-    let backdrop_path:String
+    let backdrop_path:String?
     let adult:Bool
     let overview:String
     let release_date:String

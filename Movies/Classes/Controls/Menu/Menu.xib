@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="Menu" customModule="Movies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rs6-4q-21K">
+                    <rect key="frame" x="20" y="133" width="260" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="8Sb-mC-Qp6"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                    <state key="normal" title="Popular"/>
+                    <connections>
+                        <action selector="getPopularMovies:" destination="iN0-l3-epB" eventType="touchUpInside" id="iEy-e1-SMF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ar-cb-djD">
+                    <rect key="frame" x="20" y="172" width="260" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="8AV-W0-2ld"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                    <state key="normal" title="Top Rated"/>
+                    <connections>
+                        <action selector="getTopRatedMovies:" destination="iN0-l3-epB" eventType="touchUpInside" id="ToN-B3-8PG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DpZ-kP-Oe0">
+                    <rect key="frame" x="20" y="211" width="260" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="B3F-fr-nfN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                    <state key="normal" title="Upcoming"/>
+                    <connections>
+                        <action selector="getUpcomingMovies:" destination="iN0-l3-epB" eventType="touchUpInside" id="USL-uk-NOR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desarrollado por Sebastián Romero - 2018" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMT-Xi-IS3">
+                    <rect key="frame" x="50" y="255" width="200" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="8jL-5L-FaN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.80492829623287676" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="DpZ-kP-Oe0" firstAttribute="top" secondItem="2ar-cb-djD" secondAttribute="bottom" constant="5" id="08E-Nd-vq3"/>
+                <constraint firstItem="wMT-Xi-IS3" firstAttribute="top" secondItem="DpZ-kP-Oe0" secondAttribute="bottom" constant="10" id="1fp-Qo-6AP"/>
+                <constraint firstItem="wMT-Xi-IS3" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="38P-su-cOi"/>
+                <constraint firstItem="rs6-4q-21K" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="DBl-ah-X87"/>
+                <constraint firstItem="DpZ-kP-Oe0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="E7T-Xf-Bcv"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rs6-4q-21K" secondAttribute="trailing" constant="20" id="IP0-g6-Pff"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2ar-cb-djD" secondAttribute="trailing" constant="20" id="X8q-j1-OBK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DpZ-kP-Oe0" secondAttribute="trailing" constant="20" id="XNY-0D-kao"/>
+                <constraint firstItem="2ar-cb-djD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="btO-QO-2Xj"/>
+                <constraint firstItem="2ar-cb-djD" firstAttribute="top" secondItem="rs6-4q-21K" secondAttribute="bottom" constant="5" id="m1s-eq-Zek"/>
+                <constraint firstItem="rs6-4q-21K" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="zwr-il-nVA"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="positionYMenu" destination="DBl-ah-X87" id="3hP-hy-3l6"/>
+                <outletCollection property="buttons" destination="rs6-4q-21K" collectionClass="NSMutableArray" id="cnA-lu-SKj"/>
+                <outletCollection property="buttons" destination="2ar-cb-djD" collectionClass="NSMutableArray" id="JUh-VP-BUS"/>
+                <outletCollection property="buttons" destination="DpZ-kP-Oe0" collectionClass="NSMutableArray" id="Srv-hG-gHt"/>
+            </connections>
+            <point key="canvasLocation" x="33" y="-70"/>
+        </view>
+    </objects>
+</document>

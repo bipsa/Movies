@@ -24,7 +24,34 @@ class ContentNavigationController: UIViewController {
         TheMovieDB.api.getPopularMovies { (error, response) in
             if let response = response {
                 for movie in response.results {
-                    Movie.add(movieItem: movie)
+                    let movie = Movie.add(movieItem: movie)
+                    movie.isPopular = true
+                    _ = movie.save()
+                }
+            }
+            self.topRatedMovies()
+            NotificationCenter.default.post(name: Notification.Name("MoviesUpdated"), object: nil)
+        }
+    }
+    
+    
+    func topRatedMovies() {
+        TheMovieDB.api.getTopRatedMovies { (error, response) in
+            if let response = response {
+                for movie in response.results {
+                    _ = Movie.add(movieItem: movie)
+                }
+            }
+            self.upcommingMovies()
+        }
+    }
+    
+    
+    func upcommingMovies() {
+        TheMovieDB.api.getUpcomingMovies { (error, response) in
+            if let response = response {
+                for movie in response.results {
+                    _ = Movie.add(movieItem: movie)
                 }
             }
         }

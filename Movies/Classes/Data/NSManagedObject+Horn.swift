@@ -205,6 +205,30 @@ extension NSManagedObject {
     }
     
     
+    class func search(attribute:String = "",
+                      value:String = "",
+                      limit:Int = 0,
+                      offset:Int = 0) -> [NSManagedObject] {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: className())
+        if !value.isEmpty && !attribute.isEmpty {
+            let predicate = NSPredicate(format: "\(attribute) contains[c] %@", value)
+            request.predicate = predicate
+        }
+        if limit > 0 && offset > 0{
+            request.fetchLimit = limit
+            request.fetchOffset =  offset
+        }
+        do {
+            guard let objects = try CoreDataManager.sharedManager.context.fetch(request) as? [NSManagedObject] else {
+                return []
+            }
+            return objects
+        } catch {
+            return []
+        }
+    }
+    
+    
     
     /// Saves the given context
     ///
