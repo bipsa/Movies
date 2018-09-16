@@ -1,3 +1,3 @@
-# Movies
+# Movies app
 
-![](preview.gif)
+![](preview.gif =320)
