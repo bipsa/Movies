@@ -68,7 +68,7 @@ struct MovieCast:Decodable {
     let gender:Int
     let id:Int32
     let name:String
-    let profile_path:String
+    let profile_path:String?
 }
 
 
@@ -78,7 +78,7 @@ struct MovieCrew:Decodable {
     let job:String
     let name:String
     let gender:Int
-    let profile_path:String
+    let profile_path:String?
 }
 
 

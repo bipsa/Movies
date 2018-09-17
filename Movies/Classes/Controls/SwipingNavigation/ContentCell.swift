@@ -13,6 +13,7 @@ import AlamofireImage
 struct ContentCellModel {
     let isHero:Bool
     var companies:[Company]? = nil
+    var credits:[Credit]? = nil
 }
 
 
@@ -29,22 +30,40 @@ class ContentCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSou
         }
         set {
             currentMovie = newValue
-            content = [ContentCellModel(isHero: true, companies:nil), ContentCellModel(isHero: false, companies:nil)]
+            content = [ContentCellModel(isHero: true, companies:nil, credits:nil), ContentCellModel(isHero: false, companies:nil, credits:nil)]
             if let companies = self.currentMovie.companies {
-                self.content.append(ContentCellModel(isHero: false, companies:companies.array as? [Company]))
+                self.content.append(ContentCellModel(isHero: false, companies:companies.array as? [Company], credits:nil))
+            }
+            if self.currentMovie.creditsLoaded {
+                self.content.append(ContentCellModel(isHero: false, companies:nil, credits:self.currentMovie.credits?.array as? [Credit]))
             }
             self.tableView.reloadData()
-            TheMovieDB.api.getMovieDetail(movieId: currentMovie.id) { (error, movieDetail) in
-                if let detail = movieDetail {
-                    self.currentMovie.addDetail(detail: detail)
-                    if self.content.count == 2 {
-                        if let companies = self.currentMovie.companies {
-                            self.content.append(ContentCellModel(isHero: false, companies:companies.array as? [Company]))
+            if !currentMovie.detailLoaded {
+                TheMovieDB.api.getMovieDetail(movieId: currentMovie.id) { (error, movieDetail) in
+                    if let detail = movieDetail {
+                        self.currentMovie.addDetail(detail: detail)
+                        if self.content.count == 2 {
+                            if let companies = self.currentMovie.companies {
+                                self.content.append(ContentCellModel(isHero: false, companies:companies.array as? [Company], credits:nil))
+                            }
                         }
+                        self.tableView.reloadData()
                     }
-                    self.tableView.reloadData()
                 }
-                
+            }
+            if !currentMovie.creditsLoaded {
+                TheMovieDB.api.getMovieCredits(movieId: currentMovie.id) { (error, movieCredits) in
+                    if let credits = movieCredits {
+                        for cast in credits.cast {
+                            let movieCredit = Credit.add(creditItem: cast)
+                            self.currentMovie.addToCredits(movieCredit)
+                            
+                        }
+                        self.currentMovie.creditsLoaded = true
+                        self.content.append(ContentCellModel(isHero: false, companies:nil, credits:self.currentMovie.credits?.array as? [Credit]))
+                        self.tableView.reloadData()
+                    }
+                }
             }
         }
     }
@@ -79,6 +98,8 @@ class ContentCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSou
         tableView.register(UINib(nibName: "MovieHero", bundle: nil), forCellReuseIdentifier: "MovieHero")
         tableView.register(UINib(nibName: "MovieDescription", bundle: nil), forCellReuseIdentifier: "MovieDescription")
         tableView.register(UINib(nibName: "MovieCompanies", bundle: nil), forCellReuseIdentifier: "MovieCompanies")
+        tableView.register(UINib(nibName: "LoadingContentCell", bundle: nil), forCellReuseIdentifier: "LoadingContentCell")
+        tableView.register(UINib(nibName: "CreditsCell", bundle: nil), forCellReuseIdentifier: "CreditsCell")
         tableView.dataSource = self
         tableView.delegate = self
         tableView.allowsSelection = false
@@ -130,7 +151,12 @@ extension ContentCell {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell:UITableViewCell
         let current = content[indexPath.row]
-        if let companies = current.companies {
+        if let credits = current.credits {
+            let creditsCell = tableView.dequeueReusableCell(withIdentifier: "CreditsCell", for: indexPath as IndexPath) as! CreditsCell
+            creditsCell.credits = credits
+            creditsCell.backgroundColor = .clear
+            cell = creditsCell
+        } else if let companies = current.companies {
             let companiesCell = tableView.dequeueReusableCell(withIdentifier: "MovieCompanies", for: indexPath as IndexPath) as! MovieCompanies
             companiesCell.companies = companies
             companiesCell.backgroundColor = .clear
@@ -151,7 +177,13 @@ extension ContentCell {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let current = content[indexPath.row]
-        if let companies = current.companies {
+        if let credits = current.credits {
+            var height = CGFloat(ceil(Double(5)) * 58)
+            if credits.count < 5  {
+                height = CGFloat(ceil(Double(credits.count)) * 58)
+            }
+            return height
+        } else if let companies = current.companies {
             let height = CGFloat(ceil(Double(companies.count)/Double(3)) * 100)
             return height
         } else if current.isHero {

@@ -48,6 +48,7 @@ extension Movie {
             let genre = Genre.add(genreItem: genreResponse)
             self.addToGenres(genre)
         }
+        self.detailLoaded = true
         _ = self.save()
     }
     
