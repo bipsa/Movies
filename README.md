@@ -4,6 +4,8 @@ This project uses CoreData as the persistence layer, all navigation was implemen
 
 For networking and data access, Alamofire was required with CocoaPods as dependencies manager and the new JSONDecoder class is used to serialize JSON responses and avoid unnecessary document parsing.
 
+This project also follows Apple's best practices in regards to Image Caching - The images are being saved on the cache folder in order the OS or other app required the disk space
+
 Each class contains its own responsibility and goal.
 
 #### ContentNavigationController: 
